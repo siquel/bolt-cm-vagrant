@@ -2,6 +2,7 @@
 guest_port = 80
 host_port = 8888
 vm_name = "boltcm-vagrant"
+db_root_password = "root"
 
 Vagrant.configure("2") do |config|
   config.vm.box = "bento/debian-8.7"
@@ -15,4 +16,5 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provision "shell", path: "provision/setup.sh"
+  config.vm.provision "shell", path: "provision/mariadb.sh", args: [db_root_password]
 end
